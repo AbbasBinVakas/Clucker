@@ -1,10 +1,12 @@
 """Tests of the log in view"""
+from re import L
 from django.test import TestCase
 from django.urls import reverse
 from microblogs.forms import LogInForm
 from microblogs.models import User
+from .helpers import LogInTester
 
-class LogInViewTestCase(TestCase):
+class LogInViewTestCase(TestCase, LogInTester):
     """Tests of the log in view"""
 
     def setUp(self):
