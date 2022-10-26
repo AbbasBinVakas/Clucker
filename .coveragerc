@@ -1,2 +1,3 @@
 [run]
-omit = *__init_.py, manage.py,*migrations*,*settings.py,*tests*
+branch = True
+omit = *__init__.py, manage.py,*migrations*,*settings.py,*tests*
