@@ -3,11 +3,10 @@ from django import forms
 from django.test import TestCase
 from microblogs.forms import LogInForm
 
-class LogInTestCase(TestCase):
+class LogInFormTestCase(TestCase):
     """Unit tests of the log in form."""
     def setUp(self):
         self.form_input = {'username': '@janedoe', 'password': 'Password123'}
-
 
     def test_form_contains_required_fields(self):
         form = LogInForm()

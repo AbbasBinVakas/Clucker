@@ -7,7 +7,6 @@ from microblogs.models import User
 
 class SignUpFormTestCase(TestCase):
     """Unit tests of the sign up form."""
-    pass
 
     def setUp(self):
         self.form_input = {
@@ -19,14 +18,11 @@ class SignUpFormTestCase(TestCase):
             'new_password': 'Password123',
             'password_confirmation': 'Password123'
         }
-        
 
-    # Form accepts valid input data
     def test_valid_sign_up_form(self):
         form = SignUpForm(data=self.form_input)
         self.assertTrue(form.is_valid())
 
-    # Form has the necessary fields
     def test_form_has_necessary_fields(self):
         form = SignUpForm()
         self.assertIn('first_name', form.fields)
@@ -43,13 +39,11 @@ class SignUpFormTestCase(TestCase):
         password_confirmation_widget = form.fields['password_confirmation'].widget
         self.assertTrue(isinstance(password_confirmation_widget, forms.PasswordInput))
 
-    # Form user model Validation
     def test_form_uses_model_validation(self):
         self.form_input['username'] = 'badusername'
         form = SignUpForm(data=self.form_input)
         self.assertFalse(form.is_valid())
 
-    #  New password has correct format
     def test_password_must_contain_uppercase_character(self):
         self.form_input['new_password'] = 'password123'
         self.form_input['password_confirmation'] = 'password123'
@@ -63,12 +57,10 @@ class SignUpFormTestCase(TestCase):
         self.assertFalse(form.is_valid())
 
     def test_password_must_contain_number(self):
-        self.form_input['new_password'] = 'Password'
-        self.form_input['password_confirmation'] = 'Password'
+        self.form_input['new_password'] = 'PasswordABC'
+        self.form_input['password_confirmation'] = 'PasswordABC'
         form = SignUpForm(data=self.form_input)
         self.assertFalse(form.is_valid())
-
-    #  New password and password confimation must be identical
 
     def test_new_password_and_password_confirmation_are_identical(self):
         self.form_input['password_confirmation'] = 'WrongPassword123'

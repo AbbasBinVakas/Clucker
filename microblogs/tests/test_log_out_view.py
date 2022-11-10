@@ -1,11 +1,11 @@
-"""Tests of the log out view"""
+"""Tests of the log out view."""
 from django.test import TestCase
 from django.urls import reverse
 from microblogs.models import User
 from .helpers import LogInTester
 
 class LogOutViewTestCase(TestCase, LogInTester):
-    """Tests of the log out view"""
+    """Tests of the log out view."""
 
     def setUp(self):
         self.url = reverse('log_out')
@@ -19,8 +19,8 @@ class LogOutViewTestCase(TestCase, LogInTester):
         )
 
     def test_log_out_url(self):
-        self.assertEqual(self.url, '/log_out/')
-    
+        self.assertEqual(self.url,'/log_out/')
+
     def test_get_log_out(self):
         self.client.login(username='@johndoe', password='Password123')
         self.assertTrue(self._is_logged_in())

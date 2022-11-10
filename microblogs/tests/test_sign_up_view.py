@@ -1,4 +1,4 @@
-"""Tests of the sign up view"""
+"""Tests of the sign up view."""
 from django.contrib.auth.hashers import check_password
 from django.test import TestCase
 from django.urls import reverse
@@ -7,7 +7,7 @@ from microblogs.models import User
 from .helpers import LogInTester
 
 class SignUpViewTestCase(TestCase, LogInTester):
-    """Tests of the sign up view"""
+    """Tests of the sign up view."""
 
     def setUp(self):
         self.url = reverse('sign_up')
@@ -22,8 +22,8 @@ class SignUpViewTestCase(TestCase, LogInTester):
         }
 
     def test_sign_up_url(self):
-        self.assertEqual(self.url, '/sign_up/')
-    
+        self.assertEqual(self.url,'/sign_up/')
+
     def test_get_sign_up(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
