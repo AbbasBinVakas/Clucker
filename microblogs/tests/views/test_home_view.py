@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 from microblogs.models import User
 
-class HomeViewTestCase(TestCase, LogInTester):
+class HomeViewTestCase(TestCase):
     """Tests of the home view."""
 
     fixtures = ['microblogs/tests/fixtures/default_user.json']
@@ -13,7 +13,7 @@ class HomeViewTestCase(TestCase, LogInTester):
         self.user = User.objects.get(username='@johndoe')
 
     def test_log_in_url(self):
-        self.assertEqual(self.url,'/home/')
+        self.assertEqual(self.url,'/')
 
     def test_get_home(self):
         response = self.client.get(self.url)
