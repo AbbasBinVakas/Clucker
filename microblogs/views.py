@@ -20,6 +20,7 @@ def feed(request):
 def log_in(request):
     if request.method == 'POST':
         form = LogInForm(request.POST)
+        next = request.POST.get('next') or ''
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -29,8 +30,9 @@ def log_in(request):
                 redirect_url = request.POST.get('next') or 'feed'
                 return redirect(redirect_url)
         messages.add_message(request, messages.ERROR, "The credentials provided were invalid!")
+    else:
+        next = request.GET.get('next') or ''
     form = LogInForm()
-    next = request.GET.get('next') or ''
     return render(request, 'log_in.html', {'form': form, 'next': next})
 
 def log_out(request):
