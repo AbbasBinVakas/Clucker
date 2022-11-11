@@ -9,7 +9,7 @@ from .forms import LogInForm, PostForm, SignUpForm
 from .models import Post, User
 
 
-def login_prohibiterd(view_function):
+def login_prohibited(view_function):
     def modified_view_function(request):
         if request.user.is_authenticated:
             return redirect('feed')
@@ -22,7 +22,7 @@ def feed(request):
     form = PostForm()
     return render(request, 'feed.html', {'form': form})
 
-@login_prohibiterd
+@login_prohibited
 def log_in(request):
     if request.method == 'POST':
         form = LogInForm(request.POST)
@@ -46,6 +46,7 @@ def log_out(request):
 def home(request):
     return render(request, 'home.html')
 
+@login_prohibited
 def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
